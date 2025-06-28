@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 프로필 정보
+  bio       String?
+  imageData String? // Base64 encoded image data
+  imageUrl  String? // File path for uploaded images
+  skills    String? // JSON array of skills for mentors
+
+  // 관계
+  sentRequests     MatchRequest[] @relation("MenteeSentRequests")
+  receivedRequests MatchRequest[] @relation("MentorReceivedRequests")
+
+  @@map("users")
+}
+
+model MatchRequest {
+  id        Int              @id @default(autoincrement())
+  mentorId  Int
+  menteeId  Int
+  message   String
+  status    MatchRequestStatus
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  // 관계
+  mentor User @relation("MentorReceivedRequests", fields: [mentorId], references: [id], onDelete: Cascade)
+  mentee User @relation("MenteeSentRequests", fields: [menteeId], references: [id], onDelete: Cascade)
+
+  @@unique([mentorId, menteeId]) // 같은 멘토-멘티 조합은 한 번만 요청 가능
+  @@map("match_requests")
+}
+
+enum Role {
+  MENTOR
+  MENTEE
+}
+
+enum MatchRequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELLED
+}

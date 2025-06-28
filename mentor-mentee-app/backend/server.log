@@ -1,0 +1,62 @@
+
+> backend@1.0.0 dev
+> nodemon src/index.ts
+
+[33m[nodemon] 3.1.10[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: ts,json[39m
+[32m[nodemon] starting `ts-node src/index.ts`[39m
+[dotenv@17.0.0] injecting env (4) from .env – 🔐 encrypt with dotenvx: https://dotenvx.com
+/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:859
+    return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+src/routes/user.ts(14,19): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void | Promise<void>'.
+          Type 'Response<any, Record<string, any>>' is not assignable to type 'void | Promise<void>'.
+src/routes/user.ts(15,24): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void | Promise<void>'.
+          Type 'Response<any, Record<string, any>>' is not assignable to type 'void | Promise<void>'.
+src/routes/user.ts(18,3): error TS2769: No overload matches this call.
+  The last overload gave the following error.
+    Argument of type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to parameter of type 'RequestHandlerParams<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+      Type '(req: AuthenticatedRequest, res: Response<any, Record<string, any>>, next: NextFunction) => Response<any, Record<string, any>> | undefined' is not assignable to type 'RequestHandler<ParamsDictionary, any, any, ParsedQs, Record<string, any>>'.
+        Type 'Response<any, Record<string, any>> | undefined' is not assignable to type 'void | Promise<void>'.
+          Type 'Response<any, Record<string, any>>' is not assignable to type 'void | Promise<void>'.
+
+    at createTSError (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1895:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/kimjaedeok/Desktop/libcoding/mentor-mentee-app/backend/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14) {
+  diagnosticCodes: [ 2769, 2769, 2769 ]
+}
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+node:events:496
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: read EIO
+    at TTY.onStreamRead (node:internal/stream_base_commons:216:20)
+Emitted 'error' event on ReadStream instance at:
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  errno: -5,
+  code: 'EIO',
+  syscall: 'read'
+}
+
+Node.js v22.16.0
